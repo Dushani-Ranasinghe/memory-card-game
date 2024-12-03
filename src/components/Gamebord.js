@@ -14,6 +14,10 @@ const Gamebord = ({ cards, filppedCards, setFlippedCards }) => {
             ...cardStyle,
             backgroundColor:
               card.isFlipped || card.isMatched ? "#4caf50" : "#f0f0f0",
+            transform:
+              card.isFlipped || card.isMatched
+                ? "rotateY(180deg)"
+                : "rotateY(0)",
           }}
           onClick={() => flipCard(card)}
         >
