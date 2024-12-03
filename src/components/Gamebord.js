@@ -43,4 +43,6 @@ const cardStyle = {
   border: "1px solid #ccc",
   borderRadius: "5px",
   fontSize: "24px",
+  transition: "transform 0.6s",
+  transform: "rotateY(0)",
 };

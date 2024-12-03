@@ -94,7 +94,9 @@ function App() {
       ) : (
         <p>Click "Start Game" to play! </p>
       )}
-      <button onClick={initializeGame}>Start Game</button>
+      <button onClick={initializeGame} style={buttonStyle}>
+        Start Game
+      </button>
       <p>Matches: {matches}</p>
       <p>Missmatches: {mismatches}</p>
       <p>Time Remaining: {timeRemaining}s</p>
@@ -103,3 +105,14 @@ function App() {
 }
 
 export default App;
+
+const buttonStyle = {
+  backgroundColor: "black",
+  color: "white",
+  border: "none",
+  borderRadius: "10px",
+  height: "30px",
+  marginTop: "15px",
+  width: "100px",
+  cursor: "pointer",
+};
