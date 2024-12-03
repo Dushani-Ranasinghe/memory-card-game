@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import Gamebord from "./components/Gamebord";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -20,6 +21,14 @@ function App() {
       "JS",
       "React",
       "React",
+      "Python",
+      "Python",
+      "SQL",
+      "SQL",
+      "C++",
+      "C++",
+      "Java",
+      "Java",
     ];
     const shuffledCards = cardValues
       .map((value, index) => ({
@@ -47,7 +56,16 @@ function App() {
   return (
     <div className="App">
       <h1>Memory Card Game</h1>
-      <p>Click "Start Game" to play! </p>
+
+      {cards.length > 0 ? (
+        <Gamebord
+          cards={cards}
+          filppedCards={filppedCards}
+          setFlippedCards={setFlippedCards}
+        />
+      ) : (
+        <p>Click "Start Game" to play! </p>
+      )}
       <button onClick={initializeGame}>Start Game</button>
       <p>Matches: {matches}</p>
       <p>Missmatches: {mismatches}</p>
