@@ -10,14 +10,48 @@ function App() {
   // countdown timer with 3 minutes
   const [timeRemaining, setTimeRemaining] = useState(180);
 
+  const initializeGame = () => {
+    const cardValues = [
+      "HTML",
+      "HTML",
+      "CSS",
+      "CSS",
+      "JS",
+      "JS",
+      "React",
+      "React",
+    ];
+    const shuffledCards = cardValues
+      .map((value, index) => ({
+        id: index,
+        value,
+        isFlipped: false,
+        isMatched: false,
+      }))
+      .sort(() => Math.random() - 0.5);
+    setCards(shuffledCards);
+    setFlippedCards([]);
+    setMatches(0);
+    setMismatches(0);
+    setTimeRemaining(180);
+  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (timeRemaining > 0) {
+        setTimeRemaining((previousTime) => previousTime - 1);
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeRemaining]);
+
   return (
     <div className="App">
       <h1>Memory Card Game</h1>
       <p>Click "Start Game" to play! </p>
-      <button onClick={() => alert("Game Started!")}>Start Game</button>
-      <p>Matches: </p>
-      <p>Missmatches: </p>
-      <p>Time Remaining: s</p>
+      <button onClick={initializeGame}>Start Game</button>
+      <p>Matches: {matches}</p>
+      <p>Missmatches: {mismatches}</p>
+      <p>Time Remaining: {timeRemaining}s</p>
     </div>
   );
 }
