@@ -53,6 +53,34 @@ function App() {
     return () => clearInterval(timer);
   }, [timeRemaining]);
 
+  //handle matching logic
+  useEffect(() => {
+    if (filppedCards.length === 2) {
+      const [first, second] = filppedCards;
+      if (first.value === second.value) {
+        setCards((prev) =>
+          prev.map((card) =>
+            (card.id === first.id) === second.if
+              ? { ...card, isMatched: true }
+              : card
+          )
+        );
+        setMatches((prev) => prev + 1);
+      } else {
+        setMismatches((prev) => prev + 1);
+        setTimeout(() => {
+          setCards((prev) =>
+            prev.map((card) =>
+              card.id === first.id || card.id === second.id
+                ? { ...card, isFlipped: false }
+                : card
+            )
+          );
+        }, 1000);
+      }
+      setFlippedCards([]);
+    }
+  }, [filppedCards]);
   return (
     <div className="App">
       <h1>Memory Card Game</h1>
